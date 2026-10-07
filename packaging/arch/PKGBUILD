@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oosparkline-bin
+_pkgname=oosparkline
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Generates inline UTF-8 bar chart sparklines from numeric data streams."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oosparkline"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oosparkline')
+conflicts=('oosparkline')
+source_x86_64=("${url}/releases/download/v${pkgver}/oosparkline-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oosparkline-linux-x86_64" "${pkgdir}/usr/bin/oosparkline"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oosparkline-uninstall"
+}
